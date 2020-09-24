@@ -1,0 +1,9 @@
+{
+    "teacher_id": 123456760,
+    "first_name": "John",
+    "last_name": "MeKenna",
+    "email": "john@abc.com",
+    "gender": "male",
+    "mobile": 987653213,
+   "date_of_birth": "2010-03-15T18:30:00.000Z"
+}

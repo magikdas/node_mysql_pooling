@@ -1,0 +1,51 @@
+{
+    "first_name": "John",
+    "last_name": "McKenna",
+    "gender": "male",
+    "mobile": 9364356232,
+    "email": "abc@xyz.com",
+    "dob": "2008-07-31",
+    "address": {
+        "building": "#53 Building A",
+        "street": "great street",
+        "pin": "700234"
+    }
+}
+
+
+
+{
+    "_id": {
+        "$oid": "5f2f74b83741ed09c707f86a"
+    },
+    "first_name": "Arjun",
+    "last_name": "Das",
+    "mobile": {
+        "$numberDouble": "9364356232"
+    },
+    "email": "abc@xyz.com",
+    "dob": "23/11/2011",
+    "address": {
+        "building": "#53 Building A",
+        "street": "great street",
+        "pin": "700234"
+    }
+}
+
+{
+    "_id": {
+        "$oid": "5f2f744b7b8174099282c482"
+    },
+    "first_name": "John",
+    "last_name": "McKenna",
+    "mobile": {
+        "$numberDouble": "9364356232"
+    },
+    "email": "abc@xyz.com",
+    "dob": "23/11/2011",
+    "address": {
+        "building": "#53 Building A",
+        "street": "great street",
+        "pin": "700234"
+    }
+}

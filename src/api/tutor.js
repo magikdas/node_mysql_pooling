@@ -74,10 +74,10 @@ router.get('/group', async (req, res, next) => {
 
 //Search based on criteria
 router.get('/search', async (req, res, next) => {
-    const key_name = req.body.key_name.toString();
-    let key_value = req.body.key_value.toString();
-    let key_limit = req.body.key_limit.toString() || 100;
-    let key_page = req.body.key_page.toString() || 1;
+    const key_name = req.body.key_name ? req.body.key_name.toString() : "";
+    let key_value = req.body.key_value ? req.body.key_value.toString() : "";
+    let key_limit = req.body.key_limit ? req.body.key_limit.toString() : 100;
+    let key_page = req.body.key_page ? req.body.key_page.toString() : 1;
 
     //Converting Page information into SQL Offser Information
     if (key_page == 1)

@@ -22,8 +22,8 @@ router.get('/', async (req, res, next) => {
 router.get('/group', async (req, res, next) => {
 
     const key_name = req.body.key_name.toString();
-    let filter_name = req.body.filter_name.toString();
-    let filter_value = req.body.filter_value.toString();
+    let filter_name = req.body.filter_name ? req.body.filter_name.toString() : "";
+    let filter_value = req.body.filter_value ? req.body.filter_value.toString() : "";
 
     const { key_type } = req.body;
 
@@ -63,7 +63,7 @@ router.get('/group', async (req, res, next) => {
             console.log('Unkown type');
     }
 
-    const item = await pool.connect(function (err) {
+    const item = await pool.query(function (err) {
         pool.query(queryCheck,
             function (err, result, fields) {
                 if (err) res.send(err);
@@ -123,7 +123,7 @@ router.get('/search', async (req, res, next) => {
             console.log('Unkown type');
     }
 
-    const item = await pool.connect(function (err) {
+    const item = await pool.query(function (err) {
         pool.query(queryCheck,
             function (err, result, fields) {
                 if (err) res.send(err);
@@ -155,7 +155,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     var uniqueID = uuid.v4() + '';
 
-    const abc = await pool.connect(function (err) {
+    const abc = await pool.query(function (err) {
         pool.query(`INSERT INTO school_db.teacher_master (teacher_id,first_name,last_name,email,gender,mobile,date_of_birth) VALUES
         ('${uniqueID}','${req.body.first_name}','${req.body.last_name}',
         '${req.body.email}','${req.body.gender}',${req.body.mobile},'${req.body.date_of_birth}')`,
@@ -174,12 +174,12 @@ router.put('/:id', async (req, res, next) => {
         const { id } = req.params;
 
         // Find if the ID exists in the database
-        const item = await pool.connect(function (err) {
+        const item = await pool.query(function (err) {
             pool.query(`SELECT * FROM school_db.teacher_master where teacher_id='` + id + "'",
                 function (err, result, fields) {
                     if (err) res.send(err);
                     if (result && result.length)
-                        con.query(`UPDATE school_db.teacher_master SET first_name = '${req.body.first_name}', last_name = '${req.body.last_name}', email = '${req.body.email}', gender = '${req.body.gender}', mobile = '${req.body.mobile}', date_of_birth = '${req.body.date_of_birth}' where teacher_id = '${id}'`,
+                        pool.query(`UPDATE school_db.teacher_master SET first_name = '${req.body.first_name}', last_name = '${req.body.last_name}', email = '${req.body.email}', gender = '${req.body.gender}', mobile = '${req.body.mobile}', date_of_birth = '${req.body.date_of_birth}' where teacher_id = '${id}'`,
                             function (err1, result1, fields1) {
                                 if (err1) res.send(err1);
                                 if (result1) res.send('Data Updated Successfully');
@@ -202,12 +202,12 @@ router.delete('/:id', async (req, res, next) => {
         const { id } = req.params;
 
         // Find if the ID exists in the database
-        const item = await pool.connect(function (err) {
+        const item = await pool.query(function (err) {
             pool.query(`SELECT * FROM school_db.teacher_master where teacher_id='` + id + "'",
                 function (err, result, fields) {
                     if (err) res.send(err);
                     if (result && result.length)
-                        con.query(`DELETE FROM school_db.teacher_master where teacher_id = '${id}'`,
+                        pool.query(`DELETE FROM school_db.teacher_master where teacher_id = '${id}'`,
                             function (err1, result1, fields1) {
                                 if (err1) res.send(err1);
                                 if (result1) res.send('Data Deleted Successfully');
